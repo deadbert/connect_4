@@ -1,19 +1,19 @@
 class Player
-  atter_reader:
+  attr_reader :type
   def initialize(type)
     @type = find_type(type)
   end
 
   def find_type(type)
     case type
-    when 1 || "x" || "X"
+    when 2, "x", "X"
       "X"
-    when 2 || "o" || "O" || 0
+    when 1, "o", "O", 0
       "O"
     end
   end
 
-  def place_piece(column)
+  def place_piece(column, board)
     board.place_piece(column, @type)
   end
 end
