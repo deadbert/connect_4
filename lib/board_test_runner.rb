@@ -8,4 +8,4 @@ board.setup_game
 board.render_board
 puts "-------"
 puts "-------"
-board.render_board_manual
+# board.render_board_manual

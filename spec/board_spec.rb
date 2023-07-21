@@ -1,5 +1,4 @@
-require './lib/board'
-require './lib/token'
+require_relative 'spec_helper'
 
 RSpec.describe Board do
   before(:each) do
@@ -58,6 +57,15 @@ RSpec.describe Board do
       @board.clear_board
 
       expect(@board.play_area.values).to all eq([])
+    end
+  end
+
+  describe "#place_piece" do
+    it "can place a piece in a selected column" do
+      @board.setup_game
+      @board.place_piece(:B, "X")
+
+      expect(@board.play_area[:B].last.type).to eq("X")
     end
   end
 end

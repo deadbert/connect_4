@@ -45,8 +45,9 @@ class Board
     loop do
       if @play_area[column][i].type == "."
         @play_area[column][i].type = piece_type
+        i -= 1
+        return "invalid column, column full" if i < -6
       end
-      return "invalid column, column full" if i < -6
     end
   end
 
