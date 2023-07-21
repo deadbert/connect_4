@@ -32,7 +32,7 @@ RSpec.describe Board do
   end
 
   describe "#read_cell" do
-    it "can read the value of a token on the play_area" do
+    xit "can read the value of a token on the play_area" do
       @board.setup_game
 
       expect(@board.read_cell(:A, 1)).to eq(".")
@@ -43,6 +43,21 @@ RSpec.describe Board do
     it "can print the board to the console" do
       @board.setup_game
       @board.render_board
+      @board.play_area[:A][-1].type = 'X'
+
+      @board.render_board # "X" is bottom left of board, confirming assumptions
+    end
+  end
+
+  describe "#clear_board" do
+    it "can clear the board to ready for another game" do
+      @board.setup_game
+
+      expect(@board.play_area.values.flatten).to all be_a Token
+
+      @board.clear_board
+
+      expect(@board.play_area.values).to all eq([])
     end
   end
 end

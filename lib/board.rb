@@ -14,6 +14,7 @@ class Board
       F: [],
       G: []
     }
+    @columns = [:A, :B, :C, :D, :E, :F, :G]
   end
 
   def setup_game
@@ -29,19 +30,43 @@ class Board
 
   def render_board
     puts @play_area.keys.join
-    i = 0
-    rows = 5
-    until i > rows do
-      row = form_row(i)
-      puts row
-      i += 1
+    board_array = @play_area.values.transpose
+    rows = board_array.map {|row| row.map {|token| token.type}}
+    rows.each {|line| puts line.join}
+  end
+
+  def clear_board
+    initialize
+  end
+
+  def place_piece(column, piece_type)
+    return "invalid column" if !@columns.include?(column)
+    i = -1
+    loop do
+      if @play_area[column][i].type == "."
+        @play_area[column][i].type = piece_type
+      end
+      return "invalid column, column full" if i < -6
     end
   end
 
-  def form_row(num)
-    [@play_area[:A][num].type, @play_area[:B][num].type, 
-    @play_area[:C][num].type, @play_area[:D][num].type, 
-    @play_area[:E][num].type, @play_area[:F][num].type, 
-    @play_area[:G][num].type].join
-  end
+    # test if render_board outputs correct rows/columns
+  # by comparing to manually setting rows/columns
+  # def render_board_manual
+  #   puts @play_area.keys.join
+  #   i = 0
+  #   rows = 5
+  #   until i > rows do
+  #     row = form_row(i)
+  #     puts row
+  #     i += 1
+  #   end
+  # end
+
+  # def form_row(num)
+  #   [@play_area[:A][num].type, @play_area[:B][num].type, 
+  #   @play_area[:C][num].type, @play_area[:D][num].type, 
+  #   @play_area[:E][num].type, @play_area[:F][num].type, 
+  #   @play_area[:G][num].type].join
+  # end
 end
