@@ -31,7 +31,7 @@ RSpec.describe Board do
   end
 
   describe "#read_cell" do
-    xit "can read the value of a token on the play_area" do
+    it "can read the value of a token on the play_area" do
       @board.setup_game
 
       expect(@board.read_cell(:A, 1)).to eq(".")
@@ -66,6 +66,12 @@ RSpec.describe Board do
       @board.place_piece(:B, "X")
 
       expect(@board.play_area[:B].last.type).to eq("X")
+    end
+
+    it "can detect when an invalid row (outside A-G) is selected" do
+      @board.setup_game
+
+      expect(@board.place_piece(:Y, "X")).to eq("invalid column")
     end
   end
 end
