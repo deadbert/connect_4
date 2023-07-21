@@ -64,6 +64,7 @@ RSpec.describe Board do
     it "can place a piece in a selected column" do
       @board.setup_game
       @board.place_piece(:B, "X")
+      @board.render_board
 
       expect(@board.play_area[:B].last.type).to eq("X")
     end
@@ -72,6 +73,18 @@ RSpec.describe Board do
       @board.setup_game
 
       expect(@board.place_piece(:Y, "X")).to eq("invalid column")
+    end
+
+    it "can detect when a column is full, and return invalid selection" do
+      @board.setup_game
+      @board.place_piece(:B, "X")
+      @board.place_piece(:B, "X")
+      @board.place_piece(:B, "X")
+      @board.place_piece(:B, "X")
+      @board.place_piece(:B, "X")
+      @board.place_piece(:B, "X")
+      
+      expect(@board.place_piece(:B, "X")).to eq("invalid column, column full")
     end
   end
 end
