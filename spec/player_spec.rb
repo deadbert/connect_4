@@ -30,11 +30,15 @@ describe Player do
 
   describe "actions" do
     it "can place a piece and on his team" do
+      board.setup_game
+
       dave.place_piece(:A, board)
       dave.place_piece(:D, board)
 
-      expect(board.read_cell(:A, -1)).to eq("X")
-      expect(board.read_cell(:D, -1)).to eq("X")
+      board.render_board
+
+      expect(board.read_cell(:A, 6)).to eq("X")
+      expect(board.read_cell(:D, 6)).to eq("X")
     end
   end
 end
