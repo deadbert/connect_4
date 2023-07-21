@@ -51,6 +51,15 @@ class Board
     end
   end
 
+  def draw? #allways call win condition test first
+    all_tokens = @play_area.values.flatten
+    return false if all_tokens.any? {|token| token.type == "."}
+    true
+  end
+
+  def set_draw_test
+    @play_area.each {|k,v| v.each {|token| token.type = "X"}}
+  end
     # test if render_board outputs correct rows/columns
   # by comparing to manually setting rows/columns
   # def render_board_manual
