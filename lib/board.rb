@@ -32,9 +32,16 @@ class Board
     i = 0
     rows = 5
     until i > rows do
-      row = [@play_area[:A][i].type, @play_area[:B][i].type, @play_area[:C][i].type, @play_area[:D][i].type, @play_area[:E][i].type, @play_area[:F][i].type, @play_area[:G][i].type].join
+      row = form_row(i)
       puts row
       i += 1
     end
+  end
+
+  def form_row(num)
+    [@play_area[:A][num].type, @play_area[:B][num].type, 
+    @play_area[:C][num].type, @play_area[:D][num].type, 
+    @play_area[:E][num].type, @play_area[:F][num].type, 
+    @play_area[:G][num].type].join
   end
 end
