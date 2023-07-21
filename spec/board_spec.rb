@@ -25,10 +25,24 @@ RSpec.describe Board do
 
   describe "#setup_game" do
     it "Adds tokens to board to represent blank cells" do
-      require 'pry';binding.pry
       @board.setup_game
 
-      expect(@board.play_area.values).to all be_a Token
+      expect(@board.play_area.values.flatten).to all be_a Token
+    end
+  end
+
+  describe "#read_cell" do
+    it "can read the value of a token on the play_area" do
+      @board.setup_game
+
+      expect(@board.read_cell(:A, 1)).to eq(".")
+    end
+  end
+
+  describe "#render_board" do
+    it "can print the board to the console" do
+      @board.setup_game
+      @board.render_board
     end
   end
 end
