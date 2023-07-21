@@ -16,4 +16,4 @@ class Player
   def place_piece(column)
     board.place_piece(column, @type)
   end
-  
+end
