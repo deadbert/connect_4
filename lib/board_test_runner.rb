@@ -29,5 +29,9 @@ while on
       new_token = player_1.place_piece(column, board)
     end
   end
+  # check win conditions
+  on = false if board.draw?
 end
+
+puts "Game over"
 
