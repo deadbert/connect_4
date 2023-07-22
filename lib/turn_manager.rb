@@ -1,8 +1,9 @@
-class GameLooper
+class TurnManager
 
   def initialize(board, player)
     @board = board
     @player = player
+    # @cpu = Computer.new.....
   end
 
   def start_turn
@@ -23,5 +24,9 @@ class GameLooper
       end
     end
   end
+
+  # method for cpu turn here
+
+  # method to loop cpu turn on bad column input here
 
 end

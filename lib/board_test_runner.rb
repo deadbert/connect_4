@@ -1,7 +1,7 @@
 require_relative 'board'
 require_relative 'token'
 require_relative 'player'
-require_relative 'game_looper'
+require_relative 'turn_manager'
 
 board = Board.new
 board.setup_game
@@ -17,9 +17,13 @@ if choice.downcase == "p"
   player_1 = Player.new(selection)
 end
 
-game = GameLooper.new(board, player_1)
+game = TurnManager.new(board, player_1)
 while on
   game.start_turn
+  # test for win conditions
+  # game.cpu_turn goes here
+  # test for win conditions
+  # test for draw
 end
 
 
@@ -40,6 +44,3 @@ end
 #   # check win conditions
 #   # on = false if board.draw?
 # end
-
-puts "Game over"
-
