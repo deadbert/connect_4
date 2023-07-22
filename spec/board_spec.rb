@@ -87,4 +87,18 @@ RSpec.describe Board do
       expect(@board.place_piece(:B, "X")).to eq("invalid column, column full")
     end
   end
+
+  describe "Helper method #token_positions_by_type" do
+    it "can give positions of all pieces of one type" do
+      dave = Player.new("x")
+      @board.setup_game
+
+      dave.place_piece(:A, @board)
+      dave.place_piece(:D, @board)
+
+      @board.render_board
+
+      expect(@board.token_positions_by_type("X")).to eq(["A5", "D5"])
+    end
+  end
 end
