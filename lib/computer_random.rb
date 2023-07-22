@@ -1,6 +1,6 @@
 class ComputerRandom
   attr_reader :type, :enemy
-  def initialize(type = "O")
+  def initialize(type = "O") #default needs to be removed eventually
     @type = type
     @enemy = OPPONENT[type]
   end
@@ -8,9 +8,9 @@ class ComputerRandom
   OPPONENT = {"O"=>"X", "X"=>"O"}
   COLUMNS = ["A", "B", "C", "D", "E", "F", "G"]
 
-  # def place_piece(board)
-  #   board.place_piece(COLUMNS[rand(0..6)], @type)
-  # end
+  def place_piece(board)
+    board.place_piece(COLUMNS[rand(0..6)], @type)
+  end
 end
 
 
