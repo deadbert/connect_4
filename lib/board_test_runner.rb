@@ -2,9 +2,12 @@ require_relative 'board'
 require_relative 'token'
 require_relative 'player'
 require_relative 'turn_manager'
+require_relative 'computer_random'
 
 board = Board.new
 board.setup_game
+
+cpu = ComputerRandom.new
 
 on = true
 puts "Welcome to CONNECT FOUR"
@@ -17,14 +20,16 @@ if choice.downcase == "p"
   player_1 = Player.new(selection)
 end
 
-game = TurnManager.new(board, player_1)
+game = TurnManager.new(board, player_1, cpu)
 while on
   game.start_turn
   # test for win conditions
-  # game.cpu_turn goes here
+  game.cpu_turn
   # test for win conditions
-  # test for draw
+  break if board.draw?
 end
+board.render_board
+puts "Game over"
 
 
 

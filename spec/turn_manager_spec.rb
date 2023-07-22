@@ -4,7 +4,8 @@ describe TurnManager do
   before(:each) do
     @board = Board.new
     @player = Player.new("X")
-    @game = TurnManager.new(@board, @player)
+    @cpu = ComputerRandom.new
+    @game = TurnManager.new(@board, @player, @cpu)
   end
   describe "#initialize" do
     it "exists as a Turn manager" do

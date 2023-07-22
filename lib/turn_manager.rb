@@ -1,9 +1,9 @@
 class TurnManager
   attr_reader :board, :player
-  def initialize(board, player)
+  def initialize(board, player, cpu)
     @board = board
     @player = player
-    # @cpu = Computer.new.....
+    @cpu = cpu
   end
 
   def start_turn
@@ -26,7 +26,14 @@ class TurnManager
   end
 
   # method for cpu turn here
-
+  def cpu_turn
+    new_token = @cpu.place_piece(@board)
+    if new_token == "invalid column, column full" || new_token == "invalid column"
+      until new_token != "invalid column, column full" && new_token != "invalid column"
+        new_token = @cpu.place_piece(@board)
+      end
+    end
+  end
   # method to loop cpu turn on bad column input here
 
 end
