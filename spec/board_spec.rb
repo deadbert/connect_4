@@ -86,5 +86,12 @@ RSpec.describe Board do
       
       expect(@board.place_piece(:B, "X")).to eq("invalid column, column full")
     end
+
+    it "can detect when a draw happens due to all columns being full" do
+      @board.setup_game
+      @board.set_draw_test
+      @board.render_board
+      expect(@board.draw?).to eq(true)
+    end
   end
 end
