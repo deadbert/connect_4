@@ -34,6 +34,4 @@ class TurnManager
       end
     end
   end
-  # method to loop cpu turn on bad column input here
-
 end

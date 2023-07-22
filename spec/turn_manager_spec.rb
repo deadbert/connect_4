@@ -28,4 +28,13 @@ describe TurnManager do
       expect(@game.cpu).to be_a(ComputerRandom)
     end
   end
+
+  describe "#cpu_turn" do
+    it "can perform a turn for the cpu" do
+      @board.setup_game
+      @game.cpu_turn
+
+      expect(@board.play_area.values.flatten.count {|token| token.type == "O"}).to eq(1)
+    end
+  end
 end
