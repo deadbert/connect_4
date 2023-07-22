@@ -7,9 +7,8 @@ require_relative 'power_button'
 
 board = Board.new
 cpu = ComputerRandom.new
-power_button = PowerButton.new
 
-def main_menu(power_button, board, cpu)
+def main_menu(board, cpu)
   puts "Welcome to CONNECT FOUR"
   puts "Enter p to play. Enter q to quit"
   choice = gets.chomp
@@ -20,15 +19,15 @@ def main_menu(power_button, board, cpu)
     player_1 = Player.new(selection)
     board.setup_game
     game = TurnManager.new(board, player_1, cpu)
-    game_loop(power_button, board, game, cpu)
+    game_loop(board, game, cpu)
   else
-    power_button.off
+    puts "Thanks for playing"
   end
 end
 
 
-def game_loop(power_button, board, game, cpu)
-  while power_button.power
+def game_loop(board, game, cpu)
+  loop do
     game.start_turn
     # test for win conditions
     game.cpu_turn
@@ -40,10 +39,10 @@ def game_loop(power_button, board, game, cpu)
       break
     end
   end
-  main_menu(power_button, board, cpu)
+  main_menu(board, cpu)
 end
 
-main_menu(power_button, board, cpu)
+main_menu(board, cpu)
 
 # player_1 = main_menu(power_button)
 # if player_1.is_a?(Player)
