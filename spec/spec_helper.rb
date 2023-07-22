@@ -1,5 +1,5 @@
+require 'pry'
 require './lib/board'
 require './lib/token'
 require './lib/player'
-
-
+require './lib/computer_random'
