@@ -3,7 +3,7 @@ require_relative 'token'
 require_relative 'player'
 require_relative 'turn_manager'
 require_relative 'computer_random'
-require_relative 'power_button'
+
 
 board = Board.new
 cpu = ComputerRandom.new
@@ -43,11 +43,3 @@ def game_loop(board, game, cpu)
 end
 
 main_menu(board, cpu)
-
-# player_1 = main_menu(power_button)
-# if player_1.is_a?(Player)
-#   game = TurnManager.new(board, player_1, cpu)
-# end
-
-
-
