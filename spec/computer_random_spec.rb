@@ -21,16 +21,18 @@ describe ComputerRandom do
       hal.place_piece(board)
       hal.place_piece(board)
       hal.place_piece(board)
+      hal.place_piece(board)
+      hal.place_piece(board)
       board.render_board
     
 
-      expect(board.play_area[:A].count("O")).to (be < 3)
-      expect(board.play_area[:B].count("O")).to (be < 3)
-      expect(board.play_area[:C].count("O")).to (be < 3)
-      expect(board.play_area[:D].count("O")).to (be < 3)
-      expect(board.play_area[:E].count("O")).to (be < 3)
-      expect(board.play_area[:F].count("O")).to (be < 3)
-      expect(board.play_area[:G].count("O")).to (be < 3)
+      expect(board.play_area[:A].count("O")).to (be < 5)
+      expect(board.play_area[:B].count("O")).to (be < 5)
+      expect(board.play_area[:C].count("O")).to (be < 5)
+      expect(board.play_area[:D].count("O")).to (be < 5)
+      expect(board.play_area[:E].count("O")).to (be < 5)
+      expect(board.play_area[:F].count("O")).to (be < 5)
+      expect(board.play_area[:G].count("O")).to (be < 5)
     end
   end
 end
