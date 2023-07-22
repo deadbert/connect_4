@@ -1,6 +1,7 @@
 require_relative 'board'
 require_relative 'token'
 require_relative 'player'
+require_relative 'game_looper'
 
 board = Board.new
 board.setup_game
@@ -16,22 +17,29 @@ if choice.downcase == "p"
   player_1 = Player.new(selection)
 end
 
+game = GameLooper.new(board, player_1)
 while on
-  board.render_board
-  puts "Select a column for your piece(A-G)"
-  column = gets.chomp.upcase.intern
-  new_token = player_1.place_piece(column, board)
-  if new_token == "invalid column, column full" || new_token == "invalid column"
-    until new_token != "invalid column, column full" && new_token != "invalid column"
-      puts "#{new_token}"
-      puts "Select another row(A-G)"
-      column = gets.chomp.upcase.intern
-      new_token = player_1.place_piece(column, board)
-    end
-  end
-  # check win conditions
-  on = false if board.draw?
+  game.start_turn
 end
+
+
+
+# while on
+#   board.render_board
+#   puts "Select a column for your piece(A-G)"
+#   column = gets.chomp.upcase.intern
+#   new_token = player_1.place_piece(column, board)
+#   if new_token == "invalid column, column full" || new_token == "invalid column"
+#     until new_token != "invalid column, column full" && new_token != "invalid column"
+#       puts "#{new_token}"
+#       puts "Select another row(A-G)"
+#       column = gets.chomp.upcase.intern
+#       new_token = player_1.place_piece(column, board)
+#     end
+#   end
+#   # check win conditions
+#   # on = false if board.draw?
+# end
 
 puts "Game over"
 
