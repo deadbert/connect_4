@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe PowerButton do
-  let (:button) {button = PowerBUtton.new}
+  let (:button) {button = PowerButton.new}
   describe "#initialize" do
     it "exists" do
 
