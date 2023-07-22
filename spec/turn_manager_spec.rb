@@ -22,5 +22,10 @@ describe TurnManager do
 
       expect(@game.board).to be_a(Board)
     end
+
+    it "contains a ComputerRandom object" do
+
+      expect(@game.cpu).to be_a(ComputerRandom)
+    end
   end
 end

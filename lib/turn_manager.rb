@@ -1,5 +1,5 @@
 class TurnManager
-  attr_reader :board, :player
+  attr_reader :board, :player, :cpu
   def initialize(board, player, cpu)
     @board = board
     @player = player
