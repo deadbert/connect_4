@@ -16,4 +16,10 @@ if choice.downcase == "p"
   player_1 = Player.new(selection)
 end
 
+while on
+  board.render_board
+  puts "Select a column for your piece(A-G)"
+  column = gets.chomp.upcase.intern
+  new_token = player_1.place_piece(column, board)
+end
 
