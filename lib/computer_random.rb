@@ -1,8 +1,8 @@
 class ComputerRandom
   attr_reader :type, :enemy
-  def initialize(type = "O") #default needs to be removed eventually
-    @type = type
-    @enemy = OPPONENT[type]
+  def initialize(enemy_type = "X") #default needs to be removed eventually
+    @type = OPPONENT[enemy_type]
+    @enemy = enemy_type
   end
 
   OPPONENT = {"O"=>"X", "X"=>"O"}
