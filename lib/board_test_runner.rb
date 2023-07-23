@@ -3,7 +3,7 @@ require_relative 'token'
 require_relative 'player'
 require_relative 'turn_manager'
 require_relative 'computer_random'
-require_relative 'win_checker'
+require_relative 'checker_criteria'
 
 
 board = Board.new
@@ -31,20 +31,20 @@ end
 
 
 def game_loop(board, game, cpu)
-  checker = WinChecker.new
+  checker = CheckerCriteria.new
   loop do
     game.start_turn
-    if checker.check_vertical_win(board) || checker.check_horizontal_win(board)
+    if checker.check_win_conditions(board)
       board.render_board
       board.clear_board
-      puts "Game Over"
+      puts "Game Over: #{checker.winner} wins"
       break
     end
     game.cpu_turn
-    if checker.check_vertical_win(board) || checker.check_horizontal_win(board)
+    if checker.check_win_conditions(board)
       board.render_board
       board.clear_board
-      puts "Game Over"
+      puts "Game Over: #{checker.winner} wins"
       break
     end
     if board.draw?

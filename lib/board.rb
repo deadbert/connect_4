@@ -80,17 +80,17 @@ class Board
   #   @play_area[:G][num].type].join
   # end
 
-  def token_positions_by_type(type)
-    counter = 0
-    single_array =[]
-    until counter == 7
-    @play_area[@columns[counter]].select.with_index do |point, index| 
-      if point.type == type
-        single_array << "#{@columns[counter].to_s}#{index}"
-      end #if
-      end #do
-      counter += 1
-    end #until
-    single_array
-  end #def
+  # def token_positions_by_type(type)
+  #   counter = 0
+  #   single_array =[]
+  #   until counter == 7
+  #   @play_area[@columns[counter]].select.with_index do |point, index| 
+  #     if point.type == type
+  #       single_array << "#{@columns[counter].to_s}#{index}"
+  #     end #if
+  #     end #do
+  #     counter += 1
+  #   end #until
+  #   single_array
+  # end #def
 end
