@@ -4,10 +4,11 @@ class ComputerSmart
     @type = type
     @enemy = OPPONENT[type]
     @main_counter = 0
+    @column = nil
   end
 
   OPPONENT = {"O"=>"X", "X"=>"O"}
-  COLUMNS = ["A", "B", "C", "D", "E", "F", "G"]
+  # COLUMNS = ["A", "B", "C", "D", "E", "F", "G"]
   COLUMNS_SYM = [:A, :B, :C, :D, :E, :F, :G]
 
   # def place_piece(board)
@@ -46,7 +47,7 @@ class ComputerSmart
         return board.play_area[column][i].type = piece_type
       end
       i -= 1
-      return if i < -6
+      return nil if i < -6
     end
   end
 
