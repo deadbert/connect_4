@@ -7,9 +7,8 @@ require_relative 'win_checker'
 
 
 board = Board.new
-cpu = ComputerRandom.new
 
-def main_menu(board, cpu)
+def main_menu(board)
   puts "Welcome to CONNECT FOUR"
   puts "Enter p to play. Enter q to quit"
   choice = gets.chomp
@@ -21,6 +20,7 @@ def main_menu(board, cpu)
       selection = gets.chomp
     end
     player_1 = Player.new(selection)
+    cpu = ComputerRandom.new(player_1.type)
     board.setup_game
     game = TurnManager.new(board, player_1, cpu)
     game_loop(board, game, cpu)
@@ -54,7 +54,7 @@ def game_loop(board, game, cpu)
       break
     end
   end
-  main_menu(board, cpu)
+  main_menu(board)
 end
 
-main_menu(board, cpu)
+main_menu(board)
