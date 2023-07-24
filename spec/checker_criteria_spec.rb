@@ -119,6 +119,8 @@ describe CheckerCriteria do
 
 
 
+    
+
 
 
   end
