@@ -59,7 +59,7 @@ describe CheckerCriteria do
       expect(checker.winner).to eq("X")
     end
     
-    it "will test for negative diagonals" do
+    it "will test for negative diagonals wins" do
       board.setup_game
   
       dave.place_piece(:D, board)
@@ -79,6 +79,102 @@ describe CheckerCriteria do
       checker.test_for_diagonal_wins(board)
 
       expect(checker.winner).to eq("O")
+    end
+  end
+
+  describe "test major directions for wins" do 
+    it "will test for horizontal wins" do
+      board.setup_game
+  
+      dave.place_piece(:A, board)
+      dave.place_piece(:C, board)
+      sally.place_piece(:A, board)
+      sally.place_piece(:B, board)
+      sally.place_piece(:B, board)
+      sally.place_piece(:C, board)
+      sally.place_piece(:D, board)
+      sally.place_piece(:D, board)
+
+      board.render_board
+  
+      checker.check_horizontal_win(board)
+
+      expect(checker.winner).to eq("O")
+    end
+
+    it "will test for vertical wins" do
+      board.setup_game
+  
+      dave.place_piece(:C, board)
+      dave.place_piece(:C, board)
+      dave.place_piece(:C, board)
+      dave.place_piece(:C, board)
+
+      board.render_board
+  
+      checker.check_vertical_win(board)
+
+      expect(checker.winner).to eq("X")
+    end
+  end
+
+  describe "method: check_win_conditions" do
+    it "can check for a vertical win" do
+        board.setup_game
+
+      dave.place_piece(:C, board)
+      dave.place_piece(:C, board)
+      dave.place_piece(:C, board)
+      dave.place_piece(:C, board)
+
+      board.render_board
+
+      checker.check_vertical_win(board)
+
+      expect(checker.winner).to eq("X")
+    end
+
+    it "can check for horizontal wins" do
+      board.setup_game
+  
+      dave.place_piece(:A, board)
+      dave.place_piece(:C, board)
+      sally.place_piece(:A, board)
+      sally.place_piece(:B, board)
+      sally.place_piece(:B, board)
+      sally.place_piece(:C, board)
+      sally.place_piece(:D, board)
+      sally.place_piece(:D, board)
+
+      board.render_board
+  
+      checker.check_horizontal_win(board)
+
+      expect(checker.winner).to eq("O")
+    end
+
+    it "will test for diagonals" do
+      board.setup_game
+      
+      expect(checker.win).to be false
+
+      dave.place_piece(:A, board)
+      dave.place_piece(:B, board)
+      dave.place_piece(:B, board)
+      dave.place_piece(:C, board)
+      sally.place_piece(:C, board)
+      dave.place_piece(:C, board)
+      sally.place_piece(:D, board)
+      dave.place_piece(:D, board)
+      sally.place_piece(:D, board)
+      dave.place_piece(:D, board)
+  
+      board.render_board
+  
+      checker.test_for_diagonal_wins(board)
+
+      expect(checker.win).to be true
+      expect(checker.winner).to eq("X")
     end
   end
 end
