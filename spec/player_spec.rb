@@ -27,6 +27,15 @@ describe Player do
     end
   end
 
+  describe "#find_type" do
+    it "sets player token type with given argument" do
+      expect(dave.type).to eq("X")
+
+      expect(dave.find_type(1)).to eq('O')
+      expect(dave.type).to eq("X")
+    end
+  end
+
 
   describe "actions" do
     it "can place a piece and on his team" do

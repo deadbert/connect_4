@@ -1,0 +1,6 @@
+require_relative 'board'
+require_relative 'token'
+require_relative 'player'
+require_relative 'turn_manager'
+require_relative 'computer_random'
+require_relative 'checker_criteria'

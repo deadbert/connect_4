@@ -1,5 +1,6 @@
 class CheckerCriteria
   attr_reader :win, :winner
+
   def initialize
     @win = false
     @winner = nil
@@ -29,9 +30,15 @@ class CheckerCriteria
     ["G5", "F4", "E3", "D2"],
     ["G4", "F3", "E2", "D1"],
     ["G3", "F2", "E1", "D0"]]
-
+    
     @columns = [:A, :B, :C, :D, :E, :F, :G]
   end
+
+  def check_win_conditions(board)
+    check_vertical_win(board) || check_horizontal_win(board) || test_for_diagonal_wins(board)
+  end
+
+  #Private
   
   def token_positions_by_type(type, board)
     counter = 0
@@ -76,7 +83,13 @@ class CheckerCriteria
       column.map {|token| token.type}
     end
     vert_wins = vert_strings.map {|col| col.join}
-    vert_wins.any? {|str| str.include?("XXXX") || str.include?("OOOO")}
+    if vert_wins.any? { |str| str.include?("XXXX") }
+      @win = true  
+      @winner = "X"
+    elsif vert_wins.any? { |str| str.include?("OOOO") }
+      @win = true  
+      @winner = "O"
+    end
   end
 
   def check_horizontal_win(board)
@@ -91,53 +104,7 @@ class CheckerCriteria
       @win = true  
       @winner = "O"
     end
-
   end
-
-
-  def check_win_conditions(board)
-    check_vertical_win(board) || check_horizontal_win(board) || test_for_diagonal_wins(board)
-  end
-
 end
-
-
-# columns = [:A, :B, :C, :D, :E, :F, :G]
-
-# string_columns = ["A", "B", "C", "D", "E", "F", "G"]
-# index = [3, 4, 5, 6]
-# counters = [5, 4, 3]
-
-# temp = [[3, 5], [3, 4], [3, 3], [4, 5], [4, 4], [4, 3], [5, 5], [5, 4], [5, 3], [6, 5], [6, 4], [6, 3]]
-#  map = []
-
-# # map = temp.map { |letter| letter counters.each {|number| letter << number.to_s}}
-
-# # p map
-
-#  p index.product(counters)
-# # start = [["A", 5], ["A", 4], ["A", 3], ["B", 5], ["B", 4], ["B", 3], ["C", 5], ["C", 4], ["C", 3], ["D", 5], ["D", 4], ["D", 3]]
-# # start = [[0, 5], [0, 4], [0, 3], [1, 5], [1, 4], [1, 3], [2, 5], [2, 4], [2, 3], [3, 5], [3, 4], [3, 3]]
-
-#  temp.each do | a, b| 
-#   a_counter = 0
-#   b_counter = 0
-
-#   thing = []
-  
-#   04.times do
-#     thing << [string_columns[a + a_counter] + (b + b_counter).to_s]
-#     a_counter -= 1
-#     b_counter -= 1
-#   end
-
-#   p thing.flatten(1)
-#  end
-
-# p map.flatten
-#  p ([1, 2, 2] - [ 1, 2, 3, 4, 5]).empty?
-#  p ([1, 2, 6] - [ 1, 2, 3, 4, 5]).empty?
-
-#  p [ 1, 2, 3, 4, 5] - [1, 2]
 
 
