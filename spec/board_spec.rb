@@ -20,6 +20,11 @@ RSpec.describe Board do
 
       expect(@board.play_area.values).to all eq([])
     end
+
+    it "initializes with @column attribute containing symbols for the valid column names" do
+
+      expect(@board.columns).to eq([:A, :B, :C, :D, :E, :F, :G])
+    end
   end
 
   describe "#setup_game" do
@@ -35,6 +40,8 @@ RSpec.describe Board do
       @board.setup_game
 
       expect(@board.read_cell(:A, 1)).to eq(".")
+      @board.place_piece(:A, "X")
+      expect(@board.read_cell(:A, 6)).to eq("X")
     end
   end
 
@@ -86,12 +93,24 @@ RSpec.describe Board do
       
       expect(@board.place_piece(:B, "X")).to eq("invalid column, column full")
     end
+  end
 
+  describe "#draw?" do
     it "can detect when a draw happens due to all columns being full" do
       @board.setup_game
       @board.set_draw_test
       @board.render_board
       expect(@board.draw?).to eq(true)
+    end
+  end
+
+  describe "#set_draw_test" do
+    it "sets all cells on the board to have tokens for testing draw conditions" do
+      @board.setup_game
+      @board.set_draw_test
+
+      all_tokens_type = @board.play_area.values.flatten.map { |token| token.type}
+      expect(all_tokens_type).to all eq("X")
     end
   end
 end

@@ -1,7 +1,7 @@
 require_relative 'token'
 
 class Board
-  attr_reader :header
+  attr_reader :header, :columns
   attr_accessor :play_area
 
   def initialize
@@ -14,7 +14,7 @@ class Board
       F: [],
       G: []
     }
-    @columns = [:A, :B, :C, :D, :E, :F, :G]
+    @columns = @play_area.keys
   end
 
   def setup_game
