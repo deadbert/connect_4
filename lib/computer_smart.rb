@@ -1,8 +1,8 @@
 class ComputerSmart
   attr_reader :type, :enemy
-  def initialize(type = "O") #default needs to be removed eventually
-    @type = type
-    @enemy = OPPONENT[type]
+  def initialize(type = "X") #default needs to be removed eventually
+    @type = OPPONENT[type]
+    @enemy = type
     @main_counter = 0
     @column = nil
   end
@@ -18,21 +18,21 @@ class ComputerSmart
   def north_east(column_number)
     counter = 0
     array_number = column_number 
-    item_number = ?????
+    item_number = find_empty(column, board)
     rev_array_number = column_number 
-    rev_item_number = ?????
-    begin
+    rev_item_number = find_empty(column, board)
+    loop do
       array_number += 1
       item_number += 1
       @board.play_area[COLUMNS_SYM[array_number]][item_number]
-      next nil || token.type == @enemy || token.type == "." 
+      break if nil || token.type == @enemy || token.type == "." 
       counter += 1
     end
-    begin 
+    loop do
       array_number -= 1
       item_number -= 1
       @board.play_area[COLUMNS_SYM[array_number]][item_number]
-      next nil || token.type == @enemy || token.type == "." 
+      break if nil || token.type == @enemy || token.type == "." 
       counter += 1
     end
     @main = counter if counter > @main
@@ -40,15 +40,17 @@ class ComputerSmart
 
 
 
-  def find_empty(column)
-    i = -1
+  def find_empty(column, board)
+    i = 5
+    previous = nil
     loop do
       if board.play_area[column][i].type == "."
-        return board.play_area[column][i].type = piece_type
+        return previous = i 
       end
       i -= 1
-      return nil if i < -6
+      break if i == 0
     end
+    previous
   end
 
 
