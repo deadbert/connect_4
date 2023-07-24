@@ -32,6 +32,7 @@ describe Player do
       expect(dave.type).to eq("X")
 
       expect(dave.find_type(1)).to eq('O')
+      expect(dave.type).to eq("X")
     end
   end
 
