@@ -40,6 +40,8 @@ RSpec.describe Board do
       @board.setup_game
 
       expect(@board.read_cell(:A, 1)).to eq(".")
+      @board.place_piece(:A, "X")
+      expect(@board.read_cell(:A, 6)).to eq("X")
     end
   end
 
