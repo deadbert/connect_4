@@ -12,15 +12,15 @@ class ComputerSmart
 
 
 
-  def tester(board)
-    [*0..6].each do |column_number| 
-      compass_tester(column_number, board, 1, -1)
-      compass_tester(column_number, board, -1, -1)
-      compass_tester(column_number, board, 1, 0)
-      compass_tester(column_number, board, 0, -1)
-    end
-    board.place_piece(COLUMNS_SYM[@placement_column])
-  end
+  # def tester(board)
+  #   [*0..6].each do |column_number| 
+  #     compass_tester(column_number, board, 1, -1)
+  #     compass_tester(column_number, board, -1, -1)
+  #     compass_tester(column_number, board, 1, 0)
+  #     compass_tester(column_number, board, 0, -1)
+  #   end
+  #   board.place_piece(COLUMNS_SYM[@placement_column])
+  # end
 
 
   def compass_tester(column_number, board, array_number_num, item_number_num)

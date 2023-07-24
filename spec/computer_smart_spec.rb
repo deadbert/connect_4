@@ -43,9 +43,10 @@ it "find empty" do
   
     board.render_board
   
-    hal.tester(3, board, 1 , -1)
+    hal.compass_tester(3, board, 1 , -1)
 
     expect(hal.main_counter).to eq(3)
+    expect(hal.placement_column).to eq(3)
   end
 
 
