@@ -20,6 +20,11 @@ RSpec.describe Board do
 
       expect(@board.play_area.values).to all eq([])
     end
+
+    it "initializes with @column attribute containing symbols for the valid column names" do
+
+      expect(@board.columns).to eq([:A, :B, :C, :D, :E, :F, :G])
+    end
   end
 
   describe "#setup_game" do
