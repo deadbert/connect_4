@@ -21,7 +21,7 @@ def set_up_game_manager
   board = Board.new
   board.setup_game
   player_1 = Player.new("X")
-  cpu = ComputerRandom.new(player_1.type)
+  cpu = ComputerSmart.new(player_1.type)
   TurnManager.new(board, player_1, cpu)
 end
 

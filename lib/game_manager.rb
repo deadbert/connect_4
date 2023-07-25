@@ -14,7 +14,7 @@ class GameManager
         selection = gets.chomp
       end
       player_1 = Player.new(selection)
-      cpu = ComputerSmart.new
+      cpu = ComputerSmart.new(player_1.type)
       board.setup_game
       game = TurnManager.new(board, player_1, cpu)
       game_loop(board, game, cpu)
