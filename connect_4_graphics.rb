@@ -46,7 +46,7 @@ end
 on :mouse_down do |event|
     column = find_column(event)
     new_token = player_1.place_piece(column, board)
-    game.cpu_turn
+    cpu_token = game.cpu_turn
     board.render_board
     puts checker.check_win_conditions(board)
 end

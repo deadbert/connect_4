@@ -33,5 +33,6 @@ class TurnManager
         new_token = @cpu.place_piece(@board)
       end
     end
+    new_token
   end
 end
