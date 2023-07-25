@@ -2,12 +2,12 @@ require "spec_helper"
 
 describe ComputerSmart do
 
-let (:dave) {dave = Player.new("x")}
-let (:sally) {sally = Player.new("O")}
-let (:board) {board = Board.new}
-let (:checker) {checker = CheckerCriteria.new}
-let (:hal) {hal = ComputerSmart.new}
-let (:ref) {ref = CheckerCriteria.new}
+  let (:dave) {dave = Player.new("x")}
+  let (:sally) {sally = Player.new("O")}
+  let (:board) {board = Board.new}
+  let (:checker) {checker = CheckerCriteria.new}
+  let (:hal) {hal = ComputerSmart.new}
+  let (:ref) {ref = CheckerCriteria.new}
 
   describe "exits and has attributes" do
     it "exits and has attributes" do
