@@ -4,6 +4,7 @@ describe ComputerSmart do
 
   let (:dave) {dave = Player.new("x")}
   let (:sally) {sally = Player.new("O")}
+  let (:other) {other = Player.new("$")}
   let (:board) {board = Board.new}
   let (:checker) {checker = CheckerCriteria.new}
   let (:hal) {hal = ComputerSmart.new}
@@ -205,6 +206,22 @@ describe ComputerSmart do
       hal.place_piece(board)
       
       expect(ref.token_positions_by_type("O", board).count).to eq(2)
+    end
+
+    it "will not try to place a token in a full slot even if there are three in a row" do
+      board.setup_game
+
+      dave.place_piece(:A, board)
+      dave.place_piece(:A, board)
+      dave.place_piece(:A, board)
+      sally.place_piece(:A, board)
+      sally.place_piece(:A, board)
+      sally.place_piece(:A, board)
+      
+      
+      board.render_board
+      hal.place_piece(board)
+      board.render_board
     end
   end
 end
