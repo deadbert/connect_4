@@ -35,4 +35,9 @@ class TurnManager
     end
     new_token
   end
+
+  def reset_game
+    @board.clear_board
+    @board.setup_game
+  end
 end
