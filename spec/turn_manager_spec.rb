@@ -37,4 +37,17 @@ describe TurnManager do
       expect(@board.play_area.values.flatten.count {|token| token.type == "O"}).to eq(1)
     end
   end
+
+  describe "#reset_game" do
+    it "can reset and set up a new board" do
+      @board.setup_game
+      @board.place_piece(:A, "X")
+
+      expect(@board.read_cell(:A, 6)).to eq("X")
+
+      @game.reset_game
+
+      expect(@board.read_cell(:A, 6)).to eq(".")
+    end
+  end
 end
