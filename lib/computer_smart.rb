@@ -59,7 +59,7 @@ class ComputerSmart
       break if board.play_area[COLUMNS_SYM[rev_array_number]][rev_item_number].type == type_checker
       connected_tokens += 1
     end
-    if connected_tokens > @main_connected_tokens
+    if connected_tokens > @main_connected_tokens && find_empty(column_number, board) < 6
       @main_connected_tokens = connected_tokens 
       @placement_column = column_number
       @blocking = block
@@ -68,7 +68,7 @@ class ComputerSmart
 
   def find_empty(column_number, board)
     vertical_position = 5
-    previous = nil
+    previous = 6
     loop do
       if board.play_area[COLUMNS_SYM[column_number]][vertical_position].type == "."
         return previous = vertical_position
