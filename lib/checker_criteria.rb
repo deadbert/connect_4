@@ -84,11 +84,11 @@ class CheckerCriteria
     end
     vert_wins = vert_strings.map {|col| col.join}
     if vert_wins.any? { |str| str.include?("XXXX") }
-      @win = true  
       @winner = "X"
-    elsif vert_wins.any? { |str| str.include?("OOOO") }
       @win = true  
+    elsif vert_wins.any? { |str| str.include?("OOOO") }
       @winner = "O"
+      @win = true  
     end
   end
 
@@ -98,11 +98,11 @@ class CheckerCriteria
     end
     horizontal_wins = horizontal_strings.map {|row| row.join}
     if horizontal_wins.any? {|str| str.include?("XXXX")} 
-      @win = true  
       @winner = "X"
-    elsif horizontal_wins.any? {|str| str.include?("OOOO")} 
       @win = true  
+    elsif horizontal_wins.any? {|str| str.include?("OOOO")} 
       @winner = "O"
+      @win = true  
     end
   end
 end
