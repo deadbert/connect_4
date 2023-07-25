@@ -130,4 +130,3 @@ render_start_screen
 # set up the first start screen with p to play and q to quit options
 
 show
-
