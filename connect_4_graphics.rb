@@ -43,10 +43,21 @@ def find_column(event)
   return :G if event.x > 650 && event.x < 700
 end
 
+def render_token(cords, type, cordinates)
+  Text.new(
+    "#{type}",
+    x: cordinates[cords][0] + 5, y: cordinates[cords][1] -10,
+    style: 'bold',
+    size: 50,
+    color: 'red'
+  )
+end
+
 on :mouse_down do |event|
     column = find_column(event)
-    new_token = player_1.place_piece(column, board)
+    render_token(player_1.place_piece(column, board), player_1.type, cordinates)
     cpu_token = game.cpu_turn
+    render_token(cpu_token, cpu.type, cordinates)
     board.render_board
     puts checker.check_win_conditions(board)
 end
