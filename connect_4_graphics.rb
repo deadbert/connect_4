@@ -53,13 +53,43 @@ def render_token(cords, type, cordinates)
   )
 end
 
+def render_game_over
+  set background: 'blue'
+  Text.new(
+    "Game Over",
+    x: 125, y: 325,
+    style: 'bold',
+    size: 100,
+    color: 'red'
+  )
+  Text.new(
+    "press p to play again, or q to quit",
+    x: 130, y: 475,
+    size: 35,
+    color: 'red'
+  )
+end
+
+on :key_down do |event|
+  if event.key == "p"
+    puts "it's p"
+  end
+  if event.key == "q"
+    puts "it's a q"
+  end
+end
+
 on :mouse_down do |event|
     column = find_column(event)
     render_token(player_1.place_piece(column, board), player_1.type, cordinates)
     cpu_token = game.cpu_turn
     render_token(cpu_token, cpu.type, cordinates)
     board.render_board
-    puts checker.check_win_conditions(board)
+    if checker.check_win_conditions(board)
+      board.clear_board
+      clear 
+      render_game_over
+    end
 end
 
 show
