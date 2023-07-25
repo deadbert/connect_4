@@ -1,12 +1,12 @@
 require 'ruby2d'
 require './lib/require_helper'
 
-board = Board.new
-board.setup_game
-checker = CheckerCriteria.new
-player_1 = Player.new("X")
-cpu = ComputerRandom.new(player_1.type)
-game = TurnManager.new(board, player_1, cpu)
+# board = Board.new
+# board.setup_game
+# checker = CheckerCriteria.new
+# player_1 = Player.new("X")
+# cpu = ComputerRandom.new(player_1.type)
+# game = TurnManager.new(board, player_1, cpu)
 
 set width: 775
 set height: 800
@@ -24,15 +24,25 @@ cordinates =  {
 
 }
 
+def set_up_game_manager
+  board = Board.new
+  board.setup_game
+  player_1 = Player.new("X")
+  cpu = ComputerRandom.new(player_1.type)
+  TurnManager.new(board, player_1, cpu)
+end
+
+game = set_up_game_manager
+
 # Uses cordinates Hash to render blank square positions representing connect 4 board
 def render_game(cordinates, board)
   set title: "Connect 4"
-  set background: "white"
+  set background: "blue"
   cordinates.each do |key, values|
     Square.new(
       x: values[0], y: values[1],
       size: 50,
-      color: 'blue', opacity: 0.2,
+      color: 'white', opacity: 1,
       z: 0
     )
   end
@@ -83,7 +93,8 @@ end
 on :key_down do |event|
   if event.key == "p"
     clear
-    render_game(cordinates, board)
+    game.reset_game
+    render_game(cordinates, game.board)
   end
   if event.key == "q"
     close
@@ -91,14 +102,15 @@ on :key_down do |event|
 end
 
 on :mouse_down do |event|
+    checker = CheckerCriteria.new
     column = find_column(event)
-    render_token(game.player.place_piece(column, board), game.player.type, cordinates)
+    render_token(game.player.place_piece(column, game.board), game.player.type, cordinates)
     cpu_token = game.cpu_turn
     render_token(cpu_token, game.cpu.type, cordinates)
-    board.render_board
-    if checker.check_win_conditions(board)
-      board.clear_board
-      board.setup_game
+    game.board.render_board
+    if checker.check_win_conditions(game.board)
+      game.board.clear_board
+      game.board.setup_game
       render_game_over
     end
 end
