@@ -9,7 +9,7 @@ let (:checker) {checker = CheckerCriteria.new}
 let (:hal) {hal = ComputerSmart.new}
 let (:ref) {ref = CheckerCriteria.new}
 
-  xdescribe "exits and has attributes" do
+  describe "exits and has attributes" do
     it "exits and has attributes" do
       expect(hal).to be_a ComputerSmart
 
@@ -20,7 +20,7 @@ let (:ref) {ref = CheckerCriteria.new}
     end
   end
   
- xdescribe "method: find_empty" do
+ describe "method: find_empty" do
     it "can find the first empty space in a column" do
       board.setup_game
 
@@ -39,8 +39,7 @@ let (:ref) {ref = CheckerCriteria.new}
     end
   end
 
-
-  xdescribe "method: compass_tester" do
+  describe "method: compass_tester" do
     it ",given a column, 2 directions, and token type, can tell how many tokens are in a row" do
       board.setup_game
 
@@ -61,7 +60,7 @@ let (:ref) {ref = CheckerCriteria.new}
     end
   end
 
-  xdescribe "method: tester" do
+  describe "method: tester" do
     it "will run the compass testers in four directions for each column" do
       board.setup_game
 
@@ -83,7 +82,7 @@ let (:ref) {ref = CheckerCriteria.new}
   end
   
   describe "method: place_piece" do
-    xit "will place an end piece to connect four for a + diagonal" do
+    it "will place an end piece to connect four for a + diagonal" do
       board.setup_game
 
       dave.place_piece(:B, board)
@@ -103,7 +102,7 @@ let (:ref) {ref = CheckerCriteria.new}
       expect(ref.check_win_conditions(board)).to be true
     end
 
-    xit "will place a middle piece to connect four for a - diagonal win" do
+    it "will place a middle piece to connect four for a - diagonal win" do
       board.setup_game
 
       dave.place_piece(:B, board)
@@ -123,7 +122,7 @@ let (:ref) {ref = CheckerCriteria.new}
       expect(ref.check_win_conditions(board)).to be true
     end
 
-    xit "will place a middle piece to connect five for a horizontal win" do
+    it "will place a middle piece to connect five for a horizontal win" do
       board.setup_game
 
       sally.place_piece(:A, board)
@@ -207,24 +206,5 @@ let (:ref) {ref = CheckerCriteria.new}
       
       expect(ref.token_positions_by_type("O", board).count).to eq(2)
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   end
-
-
-
-
-
 end
