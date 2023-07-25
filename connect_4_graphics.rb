@@ -1,13 +1,6 @@
 require 'ruby2d'
 require './lib/require_helper'
 
-# board = Board.new
-# board.setup_game
-# checker = CheckerCriteria.new
-# player_1 = Player.new("X")
-# cpu = ComputerRandom.new(player_1.type)
-# game = TurnManager.new(board, player_1, cpu)
-
 set width: 775
 set height: 800
 
