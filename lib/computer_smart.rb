@@ -11,17 +11,16 @@ class ComputerSmart
 
   OPPONENT = {"O"=>"X", "X"=>"O"}
   COLUMNS_SYM = [:A, :B, :C, :D, :E, :F, :G]
-  WEIGHTED_RANDOM = [:A, :B, :C, :C, :C, :D, :D, :E, :E, :E, :F, :G]
+  WEIGHTED_RANDOM = [:A, :A, :B, :B, :C, :C, :C, :C, :D, :D, :D, :E, :E, :E, :E, :F, :F, :G, :G]
 
-  def run_tests(board)
+  def place_piece(board)
     tester(board, @enemy, false)
     tester(board, @type, true)
-
     case @main_connected_tokens
-    when 2..4
-      board.place_piece(COLUMNS_SYM[@placement_column])
+    when 2..6
+      board.place_piece(COLUMNS_SYM[@placement_column], @type)
     else
-      board.place_piece(WEIGHTED_RANDOM(rand(0..11)))
+      board.place_piece(WEIGHTED_RANDOM(rand(0..18)), @type)
     end
   end
 
@@ -29,13 +28,12 @@ class ComputerSmart
 
   def tester(board, type_checker, blocking)
     [*0..6].each do |column_number| 
-      compass_tester(column_number, board, 1, -1, type_checker, blocking)
-      compass_tester(column_number, board, -1, -1, type_checker, blocking)
-      compass_tester(column_number, board, 1, 0, type_checker, blocking)
-      compass_tester(column_number, board, 0, -1, type_checker, blocking)
+      compass_tester(column_number, board, 1, -1, type_checker, blocking) #checks positive diagonal
+      compass_tester(column_number, board, -1, -1, type_checker, blocking) #checks negative diagonal
+      compass_tester(column_number, board, 1, 0, type_checker, blocking) #checks horizontal
+      compass_tester(column_number, board, 0, -1, type_checker, blocking) #checks vertical
     end
   end
-
 
   def compass_tester(column_number, board, array_number_num, item_number_num, type_checker, block)
     connected_tokens = 0
@@ -80,11 +78,5 @@ class ComputerSmart
     end
     previous
   end
-
-
-
-
-
-
 
 end
