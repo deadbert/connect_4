@@ -1,6 +1,6 @@
 class GameManager 
 
-  def main_menu(board)
+  def start_game(board)
     puts "Welcome to CONNECT FOUR"
     puts "Enter p to play. Enter q to quit"
     choice = gets.chomp
@@ -16,8 +16,11 @@ class GameManager
       board.setup_game
       game = TurnManager.new(board, player_1, cpu)
       game_loop(board, game, cpu)
+    elsif choice.downcase == "q"
+      return false
     else
-      puts "Thanks for playing"
+      puts "Invalid choice"
+      start_game(board)
     end
   end
 
@@ -45,7 +48,7 @@ class GameManager
         break
       end
     end
-    main_menu(board)
+    start_game(board)
   end
 
 end
