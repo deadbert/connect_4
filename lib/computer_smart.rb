@@ -20,7 +20,7 @@ class ComputerSmart
     when 2..6
       board.place_piece(COLUMNS_SYM[@placement_column], @type)
     else
-      board.place_piece(WEIGHTED_RANDOM(rand(0..18)), @type)
+      board.place_piece(WEIGHTED_RANDOM[rand(0..18)], @type)
     end
   end
 
