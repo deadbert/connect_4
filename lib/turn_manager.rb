@@ -33,5 +33,11 @@ class TurnManager
         new_token = @cpu.place_piece(@board)
       end
     end
+    new_token
+  end
+
+  def reset_game
+    @board.clear_board
+    @board.setup_game
   end
 end
