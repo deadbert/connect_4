@@ -1,3 +1,5 @@
+require_relative 'require_helper'
+
 class GameManager 
 
   def start_game(board)
@@ -12,7 +14,7 @@ class GameManager
         selection = gets.chomp
       end
       player_1 = Player.new(selection)
-      cpu = ComputerRandom.new(player_1.type)
+      cpu = ComputerSmart.new
       board.setup_game
       game = TurnManager.new(board, player_1, cpu)
       game_loop(board, game, cpu)
