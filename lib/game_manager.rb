@@ -33,19 +33,9 @@ class GameManager
     checker = CheckerCriteria.new
     loop do
       game.start_turn
-      if checker.check_win_conditions(board)
-        board.render_board
-        board.clear_board
-        puts "Game Over: #{checker.winner} wins"
-        break
-      end
+      break if check_re_render(board, checker)
       game.cpu_turn
-      if checker.check_win_conditions(board)
-        board.render_board
-        board.clear_board
-        puts "Game Over: #{checker.winner} wins"
-        break
-      end
+      break if check_re_render(board, checker)
       if board.draw?
         puts "It's a draw"
         board.render_board
@@ -66,6 +56,16 @@ class GameManager
       else
         puts "invalid selection"
       end
+  end
+
+  def check_re_render(board, checker)
+    if checker.check_win_conditions(board)
+      board.render_board
+      board.clear_board
+      puts "Game Over: #{checker.winner} wins"
+      return true
+    end
+    false
   end
 
 end
