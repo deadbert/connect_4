@@ -14,6 +14,7 @@ class ComputerSmart
   WEIGHTED_RANDOM = [:A, :A, :B, :B, :C, :C, :C, :C, :D, :D, :D, :E, :E, :E, :E, :F, :F, :G, :G]
 
   def place_piece(board)
+    @main_connected_tokens = 0
     tester(board, @enemy, false)
     tester(board, @type, true)
     case @main_connected_tokens
@@ -74,7 +75,7 @@ class ComputerSmart
         return previous = vertical_position
       end
       vertical_position -= 1
-      break if vertical_position == -1
+      break if vertical_position <= -1
     end
     previous
   end
