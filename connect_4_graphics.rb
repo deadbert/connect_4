@@ -21,7 +21,7 @@ def set_up_game_manager
   board = Board.new
   board.setup_game
   player_1 = Player.new("X")
-  cpu = ComputerRandom.new(player_1.type)
+  cpu = ComputerSmart.new(player_1.type)
   TurnManager.new(board, player_1, cpu)
 end
 
@@ -34,7 +34,7 @@ def render_game(cordinates, board)
   cordinates.each do |key, values|
     Square.new(
       x: values[0], y: values[1],
-      size: 50,
+      size: 85,
       color: 'white', opacity: 1,
       z: 0
     )
@@ -43,14 +43,13 @@ end
 
 # Helper method returns the corresponding symbol for selected column to drop token
 def find_column(event)
-  return :A if event.x > 50 && event.x < 100
-  return :B if event.x > 150 && event.x < 200
-  return :C if event.x > 250 && event.x < 300
-  return :D if event.x > 350 && event.x < 400
-  return :E if event.x > 450 && event.x < 500
-  return :F if event.x > 550 && event.x < 600
-  return :G if event.x > 650 && event.x < 700
-  return "out of range"
+  return :A if event.x > 0 && event.x <= 140
+  return :B if event.x > 140 && event.x <= 240
+  return :C if event.x > 240 && event.x <= 340
+  return :D if event.x > 340 && event.x <= 440
+  return :E if event.x > 440 && event.x <= 540
+  return :F if event.x > 540 && event.x <= 640
+  return :G if event.x > 640 && event.x <= 800
 end
 
 # method gathers cordinates token is placed at, and uses cordinates hash to render
@@ -60,7 +59,7 @@ def render_token(cords, type, cordinates)
     "#{type}",
     x: cordinates[cords][0] + 5, y: cordinates[cords][1] -10,
     style: 'bold',
-    size: 50,
+    size: 85,
     color: 'red'
   )
 end
