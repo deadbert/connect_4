@@ -9,15 +9,8 @@ class GameManager
   
     if choice.downcase == "p"
       selection = ''
-      until selection == "x" || selection == "o"
-        puts "would you like X's or O's?('x/o')"
-        selection = gets.chomp
-      end
-      player_1 = Player.new(selection)
+      player_1 = x_or_o
       cpu = select_cpu_type(player_1)
-      until cpu.is_a?(ComputerRandom) || cpu.is_a?(ComputerSmart)
-        cpu = select_cpu_type
-      end 
       board.setup_game
       game = TurnManager.new(board, player_1, cpu)
       game_loop(board, game, cpu)
@@ -55,6 +48,7 @@ class GameManager
         cpu = ComputerRandom.new(player.type)
       else
         puts "invalid selection"
+        select_cpu_type(player)
       end
   end
 
@@ -68,4 +62,17 @@ class GameManager
     false
   end
 
+  def x_or_o
+    puts "would you like X's or O's?('x/o')"
+    selection = gets.chomp
+    if selection == "x"
+      return player = Player.new("X")
+    elsif selection == "o"
+      return player = Player.new("O")
+    else
+      puts "invalid selecton"
+      x_or_o
+    end
+  end
+  
 end
