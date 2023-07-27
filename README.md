@@ -3,11 +3,9 @@
 Connect 4 allows users to play connect 4 in their terminal or through a graphical interface. Users can play against a randomized or smart computer opponent.
 
 ### Run
+use `gem install ruby2d` to install first </br>
 `ruby connect_4_graphics.rb` from root dir to play a graphics game
 `ruby connect_4_runner.rb` from root dir to play a game in your terminal
-
-### Install
-`gem install connect4`
 
 ### Collaborators
 - Joop Stark
