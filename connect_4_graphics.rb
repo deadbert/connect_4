@@ -99,15 +99,18 @@ on :mouse_down do |event|
   if passed_menu
     checker = CheckerCriteria.new
     column = find_column(event)
-    render_token(game.player.place_piece(column, game.board), game.player.type, cordinates)
-    cpu_token = game.cpu_turn
-    render_token(cpu_token, game.cpu.type, cordinates)
-    game.board.render_board
-    if checker.check_win_conditions(game.board)
-      game.board.clear_board
-      game.board.setup_game
-      render_game_over
-      passed_menu = false
+    token_placement = game.board.place_piece(column, game.player.type)
+    if !(token_placement == "invalid column, column full")
+      render_token(token_placement, game.player.type, cordinates)
+      cpu_token = game.cpu_turn
+      render_token(cpu_token, game.cpu.type, cordinates)
+      game.board.render_board
+      if checker.check_win_conditions(game.board)
+        game.board.clear_board
+        game.board.setup_game
+        render_game_over
+        passed_menu = false
+      end
     end
   end
 end
