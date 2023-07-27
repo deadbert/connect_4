@@ -3,6 +3,7 @@ require './lib/require_helper'
 
 set width: 775
 set height: 800
+passed_menu = false
 
 # cordinate data for rendering blank squares, as well as X's and O's when placed
 # symbols correspond to the return from Player.place_piece and TurnManager.cpu_turn
@@ -87,6 +88,7 @@ on :key_down do |event|
     clear
     game.reset_game
     render_game(cordinates, game.board)
+    passed_menu = true
   end
   if event.key == "q"
     close
@@ -94,6 +96,7 @@ on :key_down do |event|
 end
 
 on :mouse_down do |event|
+  if passed_menu
     checker = CheckerCriteria.new
     column = find_column(event)
     render_token(game.player.place_piece(column, game.board), game.player.type, cordinates)
@@ -104,7 +107,9 @@ on :mouse_down do |event|
       game.board.clear_board
       game.board.setup_game
       render_game_over
+      passed_menu = false
     end
+  end
 end
 # key down and mouse down methods for game selection and token position selection
 
