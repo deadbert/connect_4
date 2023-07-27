@@ -105,7 +105,7 @@ on :mouse_down do |event|
       cpu_token = game.cpu_turn
       render_token(cpu_token, game.cpu.type, cordinates)
       game.board.render_board
-      if checker.check_win_conditions(game.board)
+      if checker.check_win_conditions(game.board) || game.board.draw?
         game.board.clear_board
         game.board.setup_game
         render_game_over
